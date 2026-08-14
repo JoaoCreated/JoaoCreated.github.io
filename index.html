@@ -100,14 +100,31 @@
     gap:48px;
     align-items:center;
   }
-  .hero-photo{
+  .hero-photo-wrap{
+    position:relative;
+    justify-self:center;
     width:100%;
     max-width:340px;
+  }
+  .hero-photo-wrap::before{
+    content:"";
+    position:absolute;
+    inset:-30px;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(59,110,165,0.45) 0%, transparent 55%),
+      radial-gradient(circle at 75% 80%, rgba(193,89,46,0.4) 0%, transparent 55%);
+    filter:blur(38px);
+    z-index:0;
+  }
+  .hero-photo{
+    position:relative;
+    z-index:1;
+    display:block;
+    width:100%;
     aspect-ratio:3/4;
     object-fit:cover;
     border-radius:var(--radius);
     border:1px solid var(--line);
-    justify-self:center;
   }
   @media (max-width:820px){
     .hero-cols{ grid-template-columns:1fr; }
@@ -119,7 +136,7 @@
     color:var(--ore);
     letter-spacing:0.12em;
     text-transform:uppercase;
-    margin-bottom:18px;
+    margin-bottom:14px;
     display:flex; align-items:center; gap:10px;
   }
   .eyebrow::before{
@@ -127,10 +144,10 @@
     width:24px; height:1px; background:var(--ore);
   }
   h1{
-    font-size:clamp(42px, 7vw, 76px);
+    font-size:clamp(36px, 5.4vw, 60px);
     font-weight:700;
     letter-spacing:-0.02em;
-    line-height:1.02;
+    line-height:1.08;
     max-width:760px;
   }
   h1 em{
@@ -138,13 +155,13 @@
     color:var(--blueprint);
   }
   .hero-sub{
-    margin-top:24px;
-    font-size:18px;
+    margin-top:18px;
+    font-size:16px;
     color:var(--paper-dim);
     max-width:520px;
   }
   .hero-cta{
-    margin-top:40px;
+    margin-top:28px;
     display:flex;
     gap:16px;
     flex-wrap:wrap;
@@ -345,14 +362,16 @@
     <div class="hero-cols">
       <div>
         <div class="eyebrow">Vitória / ES — Design &amp; Engenharia Mecânica</div>
-        <h1>João Lima<br>transforma <em>dados complexos</em> em dashboards e designs claros.</h1>
+        <h1>João Lima<br>transforma <em>dados complexos</em><br>em dashboards<br>e designs claros.</h1>
         <p class="hero-sub">Designer na coordenação de manutenção e operação das Usinas de Briquete da Vale, enquanto se forma em Engenharia Mecânica pela Multivix.</p>
         <div class="hero-cta">
           <a href="#trajetoria" class="btn primary">Ver trajetória</a>
           <a href="#contato" class="btn">Contato</a>
         </div>
       </div>
-      <img src="perfil.png" alt="Foto de João Lima" class="hero-photo">
+      <div class="hero-photo-wrap">
+        <img src="perfil.png" alt="Foto de João Lima" class="hero-photo">
+      </div>
     </div>
   </div>
   <div class="coords mono">-20.3155° S, -40.3128° W<br>ESPÍRITO SANTO, BRASIL</div>
@@ -437,9 +456,9 @@
     <div class="section-label">04 — Contato</div>
     <h2>Vamos conversar.</h2>
     <div class="contact-links">
-     <a href="mailto:ujoaolima027@gmail.com" class="btn primary">Enviar e-mail</a>
-     <a href="https://www.linkedin.com/in/ujoaolima" class="btn">LinkedIn</a>
-     <a href="https://github.com/JoaoCreated" class="btn">GitHub</a>
+      <a href="mailto:ujoaolima027@gmail.com" class="btn primary">Enviar e-mail</a>
+      <a href="https://www.linkedin.com/in/ujoaolima" class="btn">LinkedIn</a>
+      <a href="https://github.com/JoaoCreated" class="btn">GitHub</a>
     </div>
     <div class="foot-bottom">
       <span>© 2026 João Lima</span>
