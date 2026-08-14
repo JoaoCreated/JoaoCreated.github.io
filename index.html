@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>João Lima — Engenharia Mecânica</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231B1F24'/%3E%3Ctext x='32' y='42' font-family='Courier New, monospace' font-weight='700' font-size='26' text-anchor='middle' fill='%23EDEAE2'%3EJL%3C/text%3E%3Crect x='14' y='47' width='36' height='3' fill='%23C1592E'/%3E%3C/svg%3E">
 <style>
   :root{
     --graphite: #1B1F24;
@@ -64,7 +65,7 @@
     text-decoration:none;
   }
   .brand span{ color:var(--ore); }
-  .navlinks{ display:flex; gap:28px; list-style:none; }
+  .navlinks{ display:flex; gap:24px; list-style:none; }
   .navlinks a{
     font-size:13px;
     text-decoration:none;
@@ -302,6 +303,35 @@
   .skill-card h4{ font-size:16px; margin-bottom:8px; }
   .skill-card p{ font-size:13px; color:var(--paper-dim); }
 
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+  .cert-card{
+    background:var(--graphite-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+  }
+  .cert-card h4{ font-size:15px; margin-bottom:4px; }
+  .cert-card .org{ font-size:13px; color:var(--paper-dim); }
+  .cert-card .year{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--blueprint);
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  @media (max-width:720px){
+    .cert-grid{ grid-template-columns:1fr; }
+  }
+
   /* ---------- CONTACT ---------- */
   footer{
     padding:100px 0 48px;
@@ -350,8 +380,10 @@
     <a href="#top" class="brand">JL<span>_</span>MEC</a>
     <ul class="navlinks">
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#trajetoria">Trajetória</a></li>
+      <li><a href="#trajetoria">Experiências</a></li>
+      <li><a href="#educacao">Educação</a></li>
       <li><a href="#skills">Competências</a></li>
+      <li><a href="#certificacoes">Certificações</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
   </div>
@@ -384,11 +416,11 @@
     <div class="about-grid">
       <div>
         <p>Antes da engenharia, João passou pelo <strong>marketing digital e design gráfico</strong>, atuando em projetos na Descubra Ferramentas e na DRT Sistemas, em Vila Velha/ES — uma base que hoje se traduz em clareza para comunicar processos técnicos.</p>
-        <p>Hoje, como estagiário na <strong>Vale</strong>, atua como designer dentro da coordenação de manutenção e operação das <strong>Usinas 1 e 2 de Briquete</strong>, entregando dashboards e materiais visuais que tornam dados de operação industrial mais claros para o time.</p>
+        <p>Hoje, como estagiário na <strong>Vale</strong>, atua na coordenação de manutenção e operação das <strong>Usinas 1 e 2 de Briquete</strong>, propondo melhorias de processo, acompanhando indicadores (KPIs) e desenvolvendo dashboards em Power BI que dão suporte à tomada de decisão do time.</p>
       </div>
       <div>
         <div class="stat-block">
-          <div class="num">2025—2030</div>
+          <div class="num">2025—2029</div>
           <div class="label">Bacharelado em Engenharia Mecânica, Multivix</div>
         </div>
         <div class="stat-block">
@@ -402,26 +434,41 @@
 
 <section id="trajetoria">
   <div class="wrap">
-    <div class="section-label">02 — Trajetória</div>
+    <div class="section-label">02 — Experiências</div>
     <h2>Linha do tempo</h2>
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-tag mono">DESIGN &amp; MARKETING</div>
-        <h3>Design Gráfico &amp; Marketing Digital</h3>
-        <div class="org">Descubra Ferramentas · DRT Sistemas — Vila Velha/ES</div>
-        <div class="desc">Atuação em projetos de comunicação visual e marketing digital, desenvolvendo senso estético e clareza na apresentação de ideias.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-tag mono">FORMAÇÃO — EM ANDAMENTO</div>
-        <h3>Bacharelado em Engenharia Mecânica</h3>
-        <div class="org">Multivix — 2025 a 2030</div>
-        <div class="desc">Formação voltada a sistemas mecânicos, manutenção industrial e processos de produção.</div>
+        <h3>Design Gráfico &amp; Social Media</h3>
+        <div class="org">Descubra Ferramentas — Vila Velha/ES · Ago/2024 a Dez/2025</div>
+        <div class="desc">Criação de artes para e-commerce que ajudaram um único produto a faturar mais de R$50.000. Como designer e social media, levou as redes de 7 mil para mais de 40 mil seguidores.</div>
       </div>
       <div class="tl-item active">
         <div class="tl-tag mono">ATUAL</div>
-        <h3>Estagiário — Engenharia Mecanica</h3>
+        <h3>Estagiário — Engenharia Mecânica</h3>
         <div class="org">Vale — Vitória/ES · desde Dez/2025</div>
-        <div class="desc">Coordenação de manutenção e operação das Usinas 1 e 2 de Briquete, entregando dashboards e análises técnicas para acompanhamento de indicadores.</div>
+        <div class="desc">Propõe melhorias na coordenação de manutenção e operação das Usinas 1 e 2 de Briquete: acompanha KPIs de manutenção e operação, desenvolve dashboards em Power BI e participa de Análises Preliminares de Falha (APF) e Análises de Falha (AF) para identificar causas raiz e aumentar a confiabilidade dos ativos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="educacao">
+  <div class="wrap">
+    <div class="section-label">03 — Educação</div>
+    <h2>Formação acadêmica.</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tag mono">CONCLUÍDO</div>
+        <h3>Ensino Médio</h3>
+        <div class="org">Completo</div>
+        <div class="desc">Período em que desenvolveu disciplina, responsabilidade e capacidade de trabalho em equipe, formando a base para a trajetória acadêmica e profissional.</div>
+      </div>
+      <div class="tl-item active">
+        <div class="tl-tag mono">EM ANDAMENTO</div>
+        <h3>Bacharelado em Engenharia Mecânica</h3>
+        <div class="org">Multivix — 2025 a 2029</div>
+        <div class="desc">Formação voltada a gestão de processos, manutenção, análise de dados e melhoria contínua, com foco na aplicação prática em ambientes industriais.</div>
       </div>
     </div>
   </div>
@@ -429,18 +476,18 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="section-label">03 — Competências</div>
+    <div class="section-label">04 — Competências</div>
     <h2>Onde o técnico encontra o visual.</h2>
     <div class="skills-grid">
       <div class="skill-card">
         <span class="mono">DADOS</span>
-        <h4>Dashboards</h4>
-        <p>Criação de dashboards para acompanhamento de indicadores das Usinas de Briquete.</p>
+        <h4>Dashboards &amp; KPIs</h4>
+        <p>Desenvolvimento de dashboards em Power BI e monitoramento de indicadores de manutenção e operação.</p>
       </div>
       <div class="skill-card">
         <span class="mono">ENGENHARIA</span>
-        <h4>Sistemas Mecânicos</h4>
-        <p>Base acadêmica em mecânica aplicada, em formação pela Multivix.</p>
+        <h4>Manutenção &amp; Melhoria Contínua</h4>
+        <p>Análise de Falhas (APF/AF) e metodologias Lean aplicadas à confiabilidade de ativos industriais.</p>
       </div>
       <div class="skill-card">
         <span class="mono">COMUNICAÇÃO</span>
@@ -451,14 +498,59 @@
   </div>
 </section>
 
+<section id="certificacoes">
+  <div class="wrap">
+    <div class="section-label">05 — Certificações</div>
+    <h2>Formação complementar.</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div>
+          <h4>Lean Six Sigma Yellow Belt</h4>
+          <div class="org">FM2S</div>
+        </div>
+        <div class="year mono">2026</div>
+      </div>
+      <div class="cert-card">
+        <div>
+          <h4>Programador de Manutenção</h4>
+          <div class="org">Dynamox Master</div>
+        </div>
+        <div class="year mono">2026</div>
+      </div>
+      <div class="cert-card">
+        <div>
+          <h4>Vencedor 2ª Edição Hack Base27 PRO</h4>
+          <div class="org">Hub Base27</div>
+        </div>
+        <div class="year mono">2025</div>
+      </div>
+      <div class="cert-card">
+        <div>
+          <h4>Inteligência Artificial para Marketing Essencial</h4>
+          <div class="org">Conversion Academy</div>
+        </div>
+        <div class="year mono">2025</div>
+      </div>
+      <div class="cert-card">
+        <div>
+          <h4>Prompt Engineering para SEO</h4>
+          <div class="org">Conversion Academy</div>
+        </div>
+        <div class="year mono">2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer id="contato">
   <div class="wrap">
-    <div class="section-label">04 — Contato</div>
+    <div class="section-label">06 — Contato</div>
     <h2>Vamos conversar.</h2>
     <div class="contact-links">
       <a href="mailto:ujoaolima027@gmail.com" class="btn primary">Enviar e-mail</a>
       <a href="https://www.linkedin.com/in/ujoaolima" class="btn">LinkedIn</a>
       <a href="https://github.com/JoaoCreated" class="btn">GitHub</a>
+      <a href="https://www.behance.net/gallery/233377493/Meu-Portfolio-2026" class="btn">Behance</a>
     </div>
     <div class="foot-bottom">
       <span>© 2026 João Lima</span>
