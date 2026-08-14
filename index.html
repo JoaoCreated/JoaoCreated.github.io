@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Lima — Engenharia Mecânica</title>
+<style>
+  :root{
+    --graphite: #1B1F24;
+    --graphite-2: #262B32;
+    --blueprint: #3B6EA5;
+    --ore: #C1592E;
+    --paper: #EDEAE2;
+    --paper-dim: #B9B6AC;
+    --line: rgba(237,234,226,0.14);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--graphite);
+    color:var(--paper);
+    font-family:'Inter', 'Segoe UI', -apple-system, sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    letter-spacing:0.06em;
+  }
+
+  ::selection{ background:var(--ore); color:var(--paper); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(27,31,36,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    height:64px;
+  }
+  .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    letter-spacing:0.08em;
+    color:var(--paper);
+    text-decoration:none;
+  }
+  .brand span{ color:var(--ore); }
+  .navlinks{ display:flex; gap:28px; list-style:none; }
+  .navlinks a{
+    font-size:13px;
+    text-decoration:none;
+    color:var(--paper-dim);
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.04em;
+    transition:color .2s;
+  }
+  .navlinks a:hover{ color:var(--ore); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    padding-top:64px;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-position:center;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 30% 40%, rgba(27,31,36,0) 0%, var(--graphite) 78%);
+  }
+  .hero-inner{ position:relative; z-index:2; }
+  .hero-cols{
+    display:grid;
+    grid-template-columns:1.3fr 0.7fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero-photo{
+    width:100%;
+    max-width:340px;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    justify-self:center;
+  }
+  @media (max-width:820px){
+    .hero-cols{ grid-template-columns:1fr; }
+    .hero-photo{ order:-1; max-width:220px; }
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--ore);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px; height:1px; background:var(--ore);
+  }
+  h1{
+    font-size:clamp(42px, 7vw, 76px);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.02;
+    max-width:760px;
+  }
+  h1 em{
+    font-style:normal;
+    color:var(--blueprint);
+  }
+  .hero-sub{
+    margin-top:24px;
+    font-size:18px;
+    color:var(--paper-dim);
+    max-width:520px;
+  }
+  .hero-cta{
+    margin-top:40px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:14px 24px;
+    text-decoration:none;
+    border:1px solid var(--paper);
+    color:var(--paper);
+    border-radius:var(--radius-sm);
+    transition:all .2s;
+  }
+  .btn:hover{ background:var(--paper); color:var(--graphite); }
+  .btn.primary{
+    background:var(--ore);
+    border-color:var(--ore);
+    color:var(--paper);
+  }
+  .btn.primary:hover{ background:#a3491f; border-color:#a3491f; }
+
+  .coords{
+    position:absolute;
+    bottom:32px; right:32px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+    text-align:right;
+    z-index:2;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:120px 0; border-top:1px solid var(--line); }
+  .section-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--blueprint);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+  }
+  h2{
+    font-size:clamp(28px,4vw,40px);
+    margin-bottom:56px;
+    max-width:600px;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-grid p{ color:var(--paper-dim); font-size:16px; margin-bottom:18px; }
+  .about-grid p strong{ color:var(--paper); font-weight:600; }
+  .stat-block{
+    border-left:2px solid var(--ore);
+    border-radius:4px;
+    padding-left:20px;
+    margin-top:32px;
+  }
+  .stat-block .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:32px;
+    color:var(--paper);
+  }
+  .stat-block .label{
+    font-size:13px;
+    color:var(--paper-dim);
+    margin-top:4px;
+  }
+
+  /* ---------- TIMELINE (signature element) ---------- */
+  .timeline{
+    position:relative;
+    padding-left:48px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:11px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:56px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-48px; top:4px;
+    width:23px; height:23px;
+    border:1px solid var(--blueprint);
+    border-radius:50%;
+    background:var(--graphite);
+  }
+  .tl-item.active::before{
+    background:var(--ore);
+    border-color:var(--ore);
+  }
+  .tl-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--blueprint);
+    letter-spacing:0.06em;
+    margin-bottom:6px;
+  }
+  .tl-item.active .tl-tag{ color:var(--ore); }
+  .tl-item h3{ font-size:20px; margin-bottom:6px; font-weight:600; }
+  .tl-item .org{ color:var(--paper-dim); font-size:14px; margin-bottom:10px; }
+  .tl-item .desc{ color:var(--paper-dim); font-size:15px; max-width:560px; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    background:transparent;
+  }
+  .skill-card{
+    background:var(--graphite-2);
+    padding:28px 24px;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+  }
+  .skill-card .mono{
+    font-size:12px;
+    color:var(--ore);
+    display:block;
+    margin-bottom:10px;
+  }
+  .skill-card h4{ font-size:16px; margin-bottom:8px; }
+  .skill-card p{ font-size:13px; color:var(--paper-dim); }
+
+  /* ---------- CONTACT ---------- */
+  footer{
+    padding:100px 0 48px;
+    border-top:1px solid var(--line);
+  }
+  footer h2{ margin-bottom:24px; }
+  .contact-links{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:80px;
+  }
+  .foot-bottom{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--paper-dim);
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:720px){
+    .navlinks{ display:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .coords{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--ore);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand">JL<span>_</span>MEC</a>
+    <ul class="navlinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#trajetoria">Trajetória</a></li>
+      <li><a href="#skills">Competências</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div class="hero-cols">
+      <div>
+        <div class="eyebrow">Vitória / ES — Design &amp; Engenharia Mecânica</div>
+        <h1>João Lima<br>transforma <em>dados complexos</em> em dashboards e designs claros.</h1>
+        <p class="hero-sub">Designer na coordenação de manutenção e operação das Usinas de Briquete da Vale, enquanto se forma em Engenharia Mecânica pela Multivix.</p>
+        <div class="hero-cta">
+          <a href="#trajetoria" class="btn primary">Ver trajetória</a>
+          <a href="#contato" class="btn">Contato</a>
+        </div>
+      </div>
+      <img src="perfil.png" alt="Foto de João Lima" class="hero-photo">
+    </div>
+  </div>
+  <div class="coords mono">-20.3155° S, -40.3128° W<br>ESPÍRITO SANTO, BRASIL</div>
+</header>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="section-label">01 — Sobre</div>
+    <h2>Da comunicação visual à engenharia de precisão.</h2>
+    <div class="about-grid">
+      <div>
+        <p>Antes da engenharia, João passou pelo <strong>marketing digital e design gráfico</strong>, atuando em projetos na Descubra Ferramentas e na DRT Sistemas, em Vila Velha/ES — uma base que hoje se traduz em clareza para comunicar processos técnicos.</p>
+        <p>Hoje, como estagiário na <strong>Vale</strong>, atua como designer dentro da coordenação de manutenção e operação das <strong>Usinas 1 e 2 de Briquete</strong>, entregando dashboards e materiais visuais que tornam dados de operação industrial mais claros para o time.</p>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="num">2025—2030</div>
+          <div class="label">Bacharelado em Engenharia Mecânica, Multivix</div>
+        </div>
+        <div class="stat-block">
+          <div class="num">Dez/2025</div>
+          <div class="label">Início do estágio na Vale (Usinas de Briquete)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trajetoria">
+  <div class="wrap">
+    <div class="section-label">02 — Trajetória</div>
+    <h2>Linha do tempo</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-tag mono">DESIGN &amp; MARKETING</div>
+        <h3>Design Gráfico &amp; Marketing Digital</h3>
+        <div class="org">Descubra Ferramentas · DRT Sistemas — Vila Velha/ES</div>
+        <div class="desc">Atuação em projetos de comunicação visual e marketing digital, desenvolvendo senso estético e clareza na apresentação de ideias.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-tag mono">FORMAÇÃO — EM ANDAMENTO</div>
+        <h3>Bacharelado em Engenharia Mecânica</h3>
+        <div class="org">Multivix — 2025 a 2030</div>
+        <div class="desc">Formação voltada a sistemas mecânicos, manutenção industrial e processos de produção.</div>
+      </div>
+      <div class="tl-item active">
+        <div class="tl-tag mono">ATUAL</div>
+        <h3>Estagiário — Design &amp; Dashboards</h3>
+        <div class="org">Vale — Vitória/ES · desde Dez/2025</div>
+        <div class="desc">Coordenação de manutenção e operação das Usinas 1 e 2 de Briquete, entregando dashboards e designs para acompanhamento de indicadores.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">03 — Competências</div>
+    <h2>Onde o técnico encontra o visual.</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="mono">DADOS</span>
+        <h4>Dashboards</h4>
+        <p>Criação de dashboards para acompanhamento de indicadores das Usinas de Briquete.</p>
+      </div>
+      <div class="skill-card">
+        <span class="mono">ENGENHARIA</span>
+        <h4>Sistemas Mecânicos</h4>
+        <p>Base acadêmica em mecânica aplicada, em formação pela Multivix.</p>
+      </div>
+      <div class="skill-card">
+        <span class="mono">COMUNICAÇÃO</span>
+        <h4>Design &amp; Marketing</h4>
+        <p>Experiência prévia em design gráfico e marketing digital, aplicada à comunicação de projetos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="section-label">04 — Contato</div>
+    <h2>Vamos conversar.</h2>
+    <div class="contact-links">
+      <a href="mailto:seuemail@exemplo.com" class="btn primary">Enviar e-mail</a>
+      <a href="https://www.linkedin.com/in/seu-usuario" class="btn">LinkedIn</a>
+      <a href="https://github.com/seu-usuario" class="btn">GitHub</a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 João Lima</span>
+      <span>Vitória — Espírito Santo, Brasil</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
